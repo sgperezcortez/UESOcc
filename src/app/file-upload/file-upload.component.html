@@ -1,0 +1,39 @@
+<div draggable="true" ngClass="{{dragAreaClass}}">
+  <div class="text-center">
+    <a href="javascript:void(0)" (click)="file.click()" >
+      Hacer clic para buscar
+    </a>
+    <span> o puedes arrastrar y soltar acá.</span>
+    <input 
+      type="file"
+      #file
+      [multiple]="(maxFiles > 1)"
+      (change)="onFileChange($event)"
+      style="display:none" 
+    >
+    </div>
+</div>
+
+<div *ngIf="isLoaded">
+  <mat-list dense>
+    <mat-list-item *ngFor="let file of files">
+      <span class="info-list">{{file.name}} - {{file.size/1024/1024 | number: '0.2'}} MB</span>
+      <div class="action-list">
+        <button mat-mini-fab color="warn" (click)="onSave()">
+          <i class="fa fa-cloud-upload"></i>
+        </button>
+        <button mat-mini-fab color="warn" (click)="onRemove()">
+            <i class="fa fa-times-circle"></i>
+        </button>
+      </div>
+    </mat-list-item>
+  </mat-list>
+</div>
+
+
+
+<div class="error" *ngIf="errors.length > 0">
+  <ul>
+    <li *ngFor="let err of errors">{{err}}</li>
+  </ul>
+</div>

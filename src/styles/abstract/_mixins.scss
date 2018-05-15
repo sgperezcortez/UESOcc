@@ -1,0 +1,14 @@
+@mixin fa-size($size){
+  font-size: $size;
+}
+
+@mixin buttons {
+  margin: 25px 0px;
+  padding: 10px 25px;
+  color: $secondary-text-color !important;
+  font-weight: 600;
+  float: right;
+  -webkit-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+  -moz-box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+  box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.24);
+}

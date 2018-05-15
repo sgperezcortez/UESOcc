@@ -1,0 +1,57 @@
+ /* Older browsers */
+html { 
+  font-size: 0.75rem;
+}
+
+h1 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 700;
+  font-size: 45px;
+  line-height: 51px;
+  text-transform: uppercase;
+  margin: 0 0 23px 0;
+}
+
+h2 {
+  font-family: 'Oswald', sans-serif;
+  font-weight: 500;
+  line-height: 51px;
+  font-size: 35px;
+  text-transform: uppercase;
+  margin: 0 0 23px 0;
+}
+
+h3, h4 {
+  font-family: 'Open Sans', sans-serif;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+p {
+  font-family: 'Droid Serif', serif;
+  font-size: 12px;
+  line-height: 23px;
+}
+
+ /* Modern browsers only need this one */
+
+@media screen and (min-width: 544px) {
+  html { 
+    font-size: 0.8rem; 
+  }
+}
+
+ /* Safari <8 and IE <11 */
+@media screen and (min-width: 768px) {
+   html { 
+     font-size: 0.85rem; 
+  }
+}
+
+@media screen and (min-width: 1200px) {
+  html { 
+    font-size: 0.9rem; 
+  }
+}

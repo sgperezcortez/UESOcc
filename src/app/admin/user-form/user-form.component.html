@@ -1,0 +1,131 @@
+<section class="new-user">
+  <mat-card class="card-new-user">
+
+    <mat-card-header>
+      <div mat-card-avatar>
+        <mat-icon>account_circle</mat-icon>
+      </div>
+      <mat-card-title>
+        <h2>Usuarios</h2>
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content class="new-user-form">
+      <form [formGroup]="form">
+        <mat-form-field>
+          <input 
+            matInput 
+            placeholder="Nombre"
+            formControlName="firstName"
+            required
+          >
+          <mat-hint>Debe contener más de dos caracteres</mat-hint>
+          <mat-error *ngIf="firstName.hasError('required')">
+            Este campo es <strong>obligatorio</strong>.
+          </mat-error>
+          <mat-error *ngIf="firstName.hasError('minlength') && !firstName.hasError('required')">
+            El nombre debe tener más de <strong>2 caracteres</strong> .
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input 
+            matInput 
+            placeholder="Apellido"
+            formControlName="lastName"
+            required
+          >
+          <mat-hint>Debe contener más de dos caracteres</mat-hint>
+          <mat-error *ngIf="firstName.hasError('required')">
+            Este campo es <strong>obligatorio</strong>.
+          </mat-error>
+          <mat-error *ngIf="firstName.hasError('minlength') && !firstName.hasError('required')">
+            El apellido debe contener más de <strong>2 caracteres</strong>.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input 
+            matInput 
+            placeholder="Email"
+            formControlName="email"
+            required
+          >
+          <mat-hint>Debe contener más de dos caracteres</mat-hint>
+          <mat-error *ngIf="email.hasError('required')">
+            Este campo es <strong>obligatorio</strong>.
+          </mat-error>
+          <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+            Debes ingresar un correo <strong>válido</strong>.
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field>
+          <input 
+            formControlName="password"
+            matInput 
+            placeholder="Contraseña" 
+            [type]="hide ? 'password' : 'text'"
+            required
+          >
+          <mat-icon 
+            matSuffix 
+            (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}
+          </mat-icon>
+          <mat-hint>Debe conenter por lo menos 5 caracteres</mat-hint>
+          <mat-error *ngIf="password.hasError('required')">
+            Este campo es <strong>obligatorio</strong>.
+          </mat-error>
+          <mat-error *ngIf="password.hasError('pattern') && !password.hasError('required')">
+            La contraseña debe cumplir los requisitos.
+          </mat-error>
+        </mat-form-field>
+
+        <!-- <mat-form-field>
+          <input
+            formControlName="birthDate"
+            [min]="minDate" [max]="maxDate"
+            matInput 
+            [matDatepicker]="picker" 
+            placeholder="Fecha de nacimiento"
+          >
+          <mat-hint>Formato <em>mm-dd-aaaa</em></mat-hint>
+          <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>  -->
+
+        <div class="user-type">
+          <label>Elige el tipo de usuario:</label>
+          <switch-control formControlName="isAdmin"></switch-control>
+        </div>
+          
+        
+        <!--
+        <div class="file-upload">
+          <label>Imagen de Perfil:</label>
+          <app-file-upload 
+          (imageUrl)="getImageUrl($event)"
+          (uploadStatus)="refreshImages($event)"
+          projectId="100" 
+          sectionId="107" 
+          maxFiles="1"
+          maxSize="2"
+          fileExt="JPG, GIF, PNG"
+          >
+          </app-file-upload>
+          <mat-card *ngIf="isSaved" class="profileImage">
+            <mat-card-content>
+              <img matCardImage [src]="imageUrl" alt="Imagen de perfil">
+              {{uploadStatusMessage}} <strong>{{imageUrl}}</strong>
+            </mat-card-content>
+          </mat-card>
+        </div> -->
+        
+        <div class="actions-form">
+          <button mat-button class="btn-secondary-submit" (click)="onSaveUser()">Guardar</button>
+          <button mat-button class="btn-primary-submit" (click)="onCancel()">Cancelar</button>
+        </div>
+      </form>
+    </mat-card-content>  
+  </mat-card>
+</section>

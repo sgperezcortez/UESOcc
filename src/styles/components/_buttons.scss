@@ -1,0 +1,10 @@
+
+.btn-primary-submit {
+  background: $primary-color;
+  @include buttons();
+}
+
+.btn-secondary-submit {
+  background: $secondary-color;
+  @include buttons();
+}

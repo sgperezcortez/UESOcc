@@ -1,0 +1,104 @@
+@import '~styles/abstract/variables';
+
+
+.admin-content{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+
+  a {
+    text-decoration: none;
+  }
+  
+  .card-admin{
+    width: 220px;
+    height: 321px;
+    background: $secondary-background;
+    display: flex;
+    justify-content: center;
+    margin: 20px;
+    transition: all 0.3s ease-out;
+    border-top-right-radius: 50px;
+    color: $primary-text-color;
+    overflow: hidden;
+    position: relative;
+    
+    &:hover {
+      transform: translateY(-5px) scale(1.005) translateZ(0);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.11),
+      0 10px 15px $box-shadow-color;
+      text-decoration: none;
+    }
+    
+    &:hover .overlay {
+      transform: scale(4) translateZ(0);
+    }
+  
+   &:active {
+      transform: scale(1) translateZ(0);
+      box-shadow: 0 10px 15px rgba(0,0,0,0.11),
+                  0 10px 15px $box-shadow-color;
+   }
+
+    mat-card-header {
+      display: flex;
+      justify-content: center;
+      z-index: 20;
+    }
+
+    mat-card-content {
+      display: block;
+      position: absolute;
+      top: 25%;
+      left: 15%;
+
+      .overlay {
+        width: 132px;
+        height: 132px;
+        position: absolute;
+        top: 10%;
+        left: 10%;
+        border-radius: 50%;
+        background: $secondary-color;
+        transition: transform 0.3s ease-out;
+        z-index: 2;
+      }  
+  
+    .circle {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      background: $secondary-text-color;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+      z-index: 3;
+      transition: all 0.3s ease-out;
+      
+      &:after {
+        content: "";
+        width: 140px;
+        height: 140px;
+        display: block;
+        position: absolute;
+        background: $card-bg-color;
+        border-radius: 50%;
+        margin: auto;
+        transition: opacity 0.3s ease-out;      
+      }
+
+      mat-icon{
+        font-size: 70px;
+        margin: auto 0px;
+        color: $primary-text-color;
+        position: absolute;
+        top: 25%;
+        left: 28%;
+        z-index: 30;
+      }
+      }
+    }
+  }
+}
+

@@ -1,0 +1,62 @@
+/* You can add global styles to this file, and also import other style files */
+@import './abstract/variables',
+        './abstract/mixins';
+
+@import './base/typography';
+
+@import './components/headers',
+        './components/alerts',
+        './components/buttons',
+        './components/cards';
+
+@import './layout/admin-content',
+        './layout/navigation',
+        './layout/footer',
+        './layout/forms';
+
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+*{
+	margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+// File upload styles
+
+.customClass {
+  background-color: #eeeeee;
+  border-radius: 5px dashed black;
+  max-width: 500px;
+
+  .img-ul-upload {
+    background-color: #000 !important;
+  }
+
+  .img-ul-file-upload {
+    border: 2px dashed black;
+  }
+
+  .img-ul-clear {
+    background-color: #B819BB !important;
+  }
+  
+  .img-ul-drag-box-msg {
+    color: $primary-color !important;
+  }
+
+  .img-ul-container {
+    background-color: #FF6CAD !important;
+  }
+
+  .img-ul-button span {
+    text-transform: capitalize;
+    font-size: 14px;
+    padding: 5px 10px;
+  }
+}
+    
+
+
+
+

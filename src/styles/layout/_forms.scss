@@ -1,0 +1,17 @@
+.form{
+  margin:0px 50px;
+  
+  .form-control{
+    box-shadow: none !important;
+    border-radius: 0px !important;
+    border-bottom: 1px solid $primary-color !important;
+    border-top: 1px !important;
+    border-left: none !important;
+    border-right: none !important;
+  }
+
+  .input-group-addon{
+    background: $primary-color;
+    color: $secondary-text-color;
+  }
+}

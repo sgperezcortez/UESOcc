@@ -1,0 +1,26 @@
+@import '~styles/abstract/variables';
+
+.error{ color: #f00; }
+.dragarea{
+    font-size: 16px;
+    border: 3px dashed #bbb; 
+    padding: 20px ;
+    background-color: #fff;
+    color: $text-color;
+}
+.droparea{
+    font-size: 16px;
+    border: 3px dashed #bbb; 
+    padding: 20px ;
+    background-color: #eff;
+    color: $text-color;
+}
+
+.info-list {
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.action-list {
+    margin-left: 50px;
+}

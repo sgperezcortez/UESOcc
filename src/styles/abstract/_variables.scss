@@ -1,0 +1,28 @@
+// Palette Colors variables
+$primary-color: #4D0000;
+$secondary-color: #800000;
+$alternative-color: #5D6C8C;
+$section-color: #F2EFBB;
+$primary-background: #EDEDED;
+$secondary-background: #333333;
+
+// Text Colors variables
+$text-color: #0e0e0e;
+$text-color-hover: $secondary-color;
+$primary-text-color: #e0e0e0;
+$secondary-text-color: #ffffff;
+
+// Headers colors
+$header-bg-color: #4e4e4e;
+$header-text-color: $primary-text-color;
+
+// Sahdows variables
+$box-shadow-color: rgba(194, 194, 194, 0.48);
+
+// Cards variables
+$card-bg-color: $primary-color;
+$card-bg-color-light: $secondary-color;
+$card-text-color-hover: $secondary-text-color;
+
+// FA variables
+$fa-color: $primary-text-color;

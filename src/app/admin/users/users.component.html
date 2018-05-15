@@ -1,0 +1,71 @@
+<section class="users-flex mat-elevation-z8">
+  <h2>Usuarios del Sistema</h2>
+  <div class="actions">
+    <button 
+      mat-raised-button 
+      color="primary" 
+      class="add-user" 
+      (click)="openDialog()"
+    >
+      <mat-icon>add</mat-icon> Agregar Usuario
+    </button>
+    <mat-form-field class="search-user">
+      <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filtrar por:">
+    </mat-form-field>
+  </div>
+  
+  
+  <mat-table #table [dataSource]="dataSource">
+    
+    <!-- Position Column -->
+    <ng-container matColumnDef="Nombre">
+      <mat-header-cell *matHeaderCellDef> Nombre </mat-header-cell>
+      <mat-cell *matCellDef="let appUser"> 
+        <span class="mobile-label">Nombre: </span>
+        {{appUser.firstName}} 
+      </mat-cell>
+    </ng-container>
+    
+    <!-- Name Column -->
+    <ng-container matColumnDef="Apellido">
+      <mat-header-cell *matHeaderCellDef> Apellidos </mat-header-cell>
+      <mat-cell *matCellDef="let appUser">
+        <span class="mobile-label">Apellidos: </span>
+        {{appUser.lastName}}
+      </mat-cell>
+    </ng-container>
+    
+    <!-- Weight Column -->
+    <ng-container matColumnDef="Email">
+      <mat-header-cell *matHeaderCellDef> Email </mat-header-cell>
+      <mat-cell *matCellDef="let appUser">
+        <span class="mobile-label">Email: </span>
+        {{appUser.email}}
+      </mat-cell>
+    </ng-container>
+    
+    <ng-container matColumnDef="Acciones">
+      <mat-header-cell *matHeaderCellDef> Acciones </mat-header-cell>
+      <mat-cell *matCellDef="let row">
+        <span class="mobile-label">Acciones: </span>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_horiz</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item>
+            <mat-icon>mode_edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item>
+            <mat-icon>delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
+      </mat-cell>
+    </ng-container>
+    
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+  </mat-table>
+  
+</section>

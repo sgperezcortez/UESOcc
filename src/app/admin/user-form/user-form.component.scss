@@ -1,0 +1,45 @@
+@import '~styles/abstract/variables';
+
+.new-user {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+
+  .card-new-user{
+
+    mat-card-header{
+      background: $secondary-color;
+      padding: 20px 0px 10px 20px;
+      
+      mat-icon, mat-card-title{
+        color: $secondary-text-color;
+      }
+
+      mat-icon{
+        font-size: 40px;
+      }
+    }
+
+    form {
+      display: flex;
+      flex-direction: column;
+
+      mat-form-field, .user-type {
+        margin: 10px 0px;
+
+      }
+
+      .actions-form{
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-end;
+        
+        button {
+          width: 100px;
+          margin: 10px;
+        }
+      }
+    }
+
+  }
+}

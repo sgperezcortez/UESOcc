@@ -1,0 +1,32 @@
+<nav class="nav-menu">
+  <div class="wrapper">
+    <label for="show-menu" class="show-menu">Show Menu</label>
+    <input type="checkbox" id="show-menu">
+    <ul class="navigation">
+      <ng-container *ngIf="!authService.loggedIn()">
+        <li routerLinkActive="active current"><a routerLink="/identidad">Identidad</a></li>
+        <li routerLinkActive="active current"><a routerLink="/admisiones">Admisiones</a></li>
+        <li routerLinkActive="active current"><a routerLink="/eventos">Eventos</a></li>
+        <li routerLinkActive="active current"><a routerLink="/publicaciones">Publicaciones</a></li>
+        <li routerLinkActive="active current"><a routerLink="/carreras">Carreras</a></li>
+        <li routerLinkActive="active current"><a routerLink="/departamentos">Departamentos</a></li>
+        <li routerLinkActive="active current"><a routerLink="/login">Ingresar</a></li>
+      </ng-container>
+      <ng-container *ngIf="authService.loggedIn()">
+        <li><a routerLink="/admin">Panel Adminstrativo</a></li>
+        <li class="item-has-children">
+          <a href="#">
+            {{authService.currentUser.firstName}} {{authService.currentUser.lastName}} 
+          </a>
+          <ul>
+            <li><a href="">Perfil</a></li>
+            <li><a (click)="onLogout()">Cerrar Sesión</a></li>
+          </ul>
+        </li>
+      </ng-container>
+    </ul>
+  </div>
+  <div id="img-nav">
+    <img routerLink="/" class="logo-uesocc" src="../../assets/logo_nav.png" alt="Logo de la Facultad Multidisciplinaria de Occidente">
+  </div>
+</nav>

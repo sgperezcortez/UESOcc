@@ -1,0 +1,75 @@
+<section class="login-flex">.
+  <div class="wrapper">
+    <mat-card class="left">
+      <mat-card-header>
+        <mat-card-title>
+          <h3>¡Qué gusto tenerte de vuelta con nosotros!</h3>
+        </mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <p>Iniciando sesión en el portal se asume que eres un usuario autorizado de acuerdo a nuestras políticas de publicación.</p>
+        <p>Si aún no posees credenciales para ingresar, ponte en contacto con el administrador del sitio.
+      </mat-card-content>
+    </mat-card>
+
+    <mat-card class="right">
+      <mat-card-header>
+        <mat-card-title>
+          <h3>Iniciar Sesión</h3>
+        </mat-card-title>
+      </mat-card-header>
+      
+      <mat-card-content>
+        <form [formGroup]="form" (ngSubmit)=login()>
+          <div *ngIf="isInvalid" class="alert-danger">
+              Las credenciales para tu ingreso son incorrectas.
+            </div>
+          <mat-form-field class="full-width">
+            <mat-icon matPrefix class="mat-18">email</mat-icon>
+            <input
+              type="email"
+              matInput
+              placeholder="Correo Electrónico"
+              formControlName="email"
+              required
+            >
+            <mat-hint>Debe contener más de dos caracteres</mat-hint>
+            <mat-error *ngIf="email.hasError('required')">
+              Este campo es <strong>obligatorio</strong>.
+            </mat-error>
+            <mat-error *ngIf="email.hasError('email') && !email.hasError('required')">
+              Debes ingresar un correo <strong>válido</strong>.
+            </mat-error>
+          </mat-form-field>
+
+          <mat-form-field class="full-width">
+            <mat-icon matPrefix class="mat-18">lock</mat-icon>
+            <input
+              formControlName="password"
+              matInput 
+              placeholder="Contraseña" 
+              [type]="hide ? 'password' : 'text'"
+              required
+            >
+            <mat-icon 
+              matSuffix 
+              (click)="hide = !hide">{{hide ? 'visibility' : 'visibility_off'}}
+            </mat-icon>
+            <mat-hint>Debe conenter mayúsculas, minúsculas, números y al menos '@' o '*'</mat-hint>
+            <mat-error *ngIf="password.hasError('required')">
+              Este campo es <strong>obligatorio</strong>.
+            </mat-error>
+            <mat-error *ngIf="password.hasError('pattern') && !password.hasError('required')">
+              La contraseña debe cumplir los requisitos.
+            </mat-error>
+          </mat-form-field>
+          <mat-card-actions align="end">              
+            <button mat-raised-button color="primary">Iniciar Sesión</button>
+          </mat-card-actions>
+        </form>
+      </mat-card-content>
+
+    </mat-card>
+  </div>
+</section>

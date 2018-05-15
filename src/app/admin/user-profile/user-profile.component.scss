@@ -1,0 +1,63 @@
+@import '~styles/abstract/variables';
+
+.user-profile {
+  display: flex;
+  justify-content: center;
+
+  .card-profile {
+    width: 960px;
+    margin: 20px;
+    position: relative;
+    &:after {
+      content: "";
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      border-left: 150px solid cadetblue;
+      border-top: 150px solid transparent;
+    }
+
+    mat-card-header {
+      
+      .left {
+        z-index: 5;
+        flex: 1 1 20%;
+        display: flex;
+        justify-content: center;
+
+        .profile-image {
+          border-radius: 50%;
+          width: 120px;
+          height: 120px;
+        }
+      }
+
+      .right {
+        flex: 1 1 80%;
+      }
+    }
+
+  }
+}
+
+@media screen and (max-width: 600px) {
+  mat-card-header {
+    flex-direction: column;
+    .left {
+      flex: 1 1 100%;
+      justify-content: center;
+
+      .profile-image {
+        border-radius: 50%;
+        width: 120px;
+        height: 120px;
+        order: 1;
+      }
+    }
+
+    .right {
+      flex: 1 1 100%;
+      order: 2;
+    }
+  }
+}
