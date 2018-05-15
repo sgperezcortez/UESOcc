@@ -72,6 +72,11 @@ module.exports = {
       cycles: Joi.number().min(2),
       years: Joi.number().min(2),
       collegeDegree: Joi.string().min(5)
+    }),
+
+    departmentSchema: Joi.object().keys({
+      departmentName: Joi.string().min(5).required(),
+      departmentWorkArea: Joi.string().min(5).required()
     })
   }
 }

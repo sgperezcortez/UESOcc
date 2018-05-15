@@ -11,8 +11,11 @@ const departmentSchema = new Schema({
     type: String,
     required: true
   },
-  departmentArea: {
+  departmentWorkArea: {
     type: String,
     required: true
   }  
-})
+});
+
+const Department = mongoose.model('department', departmentSchema);
+module.exports = Department;
