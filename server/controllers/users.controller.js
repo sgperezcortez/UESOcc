@@ -53,7 +53,7 @@ module.exports = {
     });
   },
   
-  editUser: async (req, res, next) => {
+  edit: async (req, res, next) => {
     const { userId } = req.params;
     const newUser = req.body;
 
@@ -64,7 +64,7 @@ module.exports = {
     });
   },
 
-  updateUser: async (req, res, next) => {
+  update: async (req, res, next) => {
     const {userId} = req.params;
     const newUser = req.body;
 
@@ -75,7 +75,7 @@ module.exports = {
     });
   },
 
-  deleteUser: async (req, res, next) => {
+  delete: async (req, res, next) => {
     const { userId } = req.params;
 
     const result = await User.findByIdAndRemove(userId);

@@ -38,7 +38,21 @@ module.exports = {
     });
   },
 
-  editCareer: async (req, res, next) => {
+  getDepartment: async (req, res, next) => {
+    const { departmentId } = req.params;
+    const department = await Department.findById(departmentId)
+    res.status(200).json({
+      success: true,
+      message: 'Recuperando información del departamento',
+      department: department,
+      request: {
+        type: 'GET',
+        url: base_URL + departmentId
+      }
+    });
+  },
+
+  edit: async (req, res, next) => {
     const { departmentId } = req.params;
     const newDepartment = req.body;
 
@@ -49,7 +63,7 @@ module.exports = {
     });
   },
 
-  updateCarrer: async (req, res, next) => {
+  update: async (req, res, next) => {
     const { departmentId } = req.params;
     const newDepartment = req.body;
 
@@ -60,7 +74,7 @@ module.exports = {
     });
   },
 
-  deleteDepartment: async (req, res, next) => {
+  delete: async (req, res, next) => {
     const { departmentId } = req.params;
 
     const result = await Department.findByIdAndRemove(departmentId);

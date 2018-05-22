@@ -12,8 +12,8 @@ router.route('/')
 
 router.route('/:careerId')
   .get(passportJwt, careersController.getCareer)
-  .put(passportJwt, careersController.editCareer)
-  .patch(passportJwt, careersController.updateCareer)
-  .delete(passportJwt, careersController.deleteCareer);
+  .put(passportJwt, careersController.edit)
+  .patch(passportJwt, careersController.update)
+  .delete(passportJwt, careersController.delete);
 
 module.exports = router;

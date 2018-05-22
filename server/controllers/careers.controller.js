@@ -60,7 +60,7 @@ module.exports = {
     });
   },
 
-  editCareer: async (req, res, next) => {
+  edit: async (req, res, next) => {
     const { careerId } = req.params;
     const newCareer = req.body;
 
@@ -71,7 +71,7 @@ module.exports = {
     });
   },
 
-  updateCareer: async (req, res, next) => {
+  update: async (req, res, next) => {
     const { careerId } = req.params;
     const newCareer = req.body;
 
@@ -82,7 +82,7 @@ module.exports = {
     });
   },
 
-  deleteCareer: async (req, res, next) => {
+  delete: async (req, res, next) => {
     const { careerId } = req.params;
 
     const result = await Career.findByIdAndRemove(careerId);

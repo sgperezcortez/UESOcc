@@ -21,8 +21,8 @@ router.route('/')
 
 router.route('/:userId')
   .get(passportJwt, usersController.getUser)
-  .put(passportJwt, usersController.editUser)
-  .patch(passportJwt, usersController.updateUser)
-  .delete(passportJwt, usersController.deleteUser);
+  .put(passportJwt, usersController.edit)
+  .patch(passportJwt, usersController.update)
+  .delete(passportJwt, usersController.delete);
 
 module.exports = router;

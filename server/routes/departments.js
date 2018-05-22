@@ -11,4 +11,10 @@ router.route('/')
     .post(validateBody(schemas.departmentSchema), passportJwt, departmentsController.create)
     .get(passportJwt, departmentsController.read);
 
+router.route('/:departmentId')
+  .get(passportJwt, departmentsController.getDepartment)
+  .put(passportJwt, departmentsController.edit)
+  .patch(passportJwt, departmentsController.update)
+  .delete(passportJwt, departmentsController.delete)
+
 module.exports = router;
