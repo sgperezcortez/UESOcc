@@ -36,5 +36,37 @@ module.exports = {
         url: base_URL + department._id
       }
     });
+  },
+
+  editCareer: async (req, res, next) => {
+    const { departmentId } = req.params;
+    const newDepartment = req.body;
+
+    const result = await Department.findByIdAndUpdate(departmentId, newDepartment);
+    res.status(200).json({
+      success: true,
+      message: 'Departamento editado satisfactoriamente'
+    });
+  },
+
+  updateCarrer: async (req, res, next) => {
+    const { departmentId } = req.params;
+    const newDepartment = req.body;
+
+    const result = await Department.findByIdAndUpdate{departmentId, newDepartment};
+    res.status(200).json({
+      success: true,
+      message: 'Departamento editado satisfactoriamente'
+    });
+  },
+
+  deleteDepartment: async (req, res, next) => {
+    const { departmentId } = req.params;
+
+    const result = await Department.findByIdAndRemove(departmentId);
+    res.status(200).json({
+      success: true,
+      message: 'Departamento borrado satisfactoriamente'
+    });
   }
 }
