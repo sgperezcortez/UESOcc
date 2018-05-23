@@ -67,7 +67,7 @@ module.exports = {
     const { departmentId } = req.params;
     const newDepartment = req.body;
 
-    const result = await Department.findByIdAndUpdate{departmentId, newDepartment};
+    const result = await Department.findByIdAndUpdate(departmentId, newDepartment);
     res.status(200).json({
       success: true,
       message: 'Departamento editado satisfactoriamente'
