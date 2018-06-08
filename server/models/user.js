@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+const Department = require('../models/departments');
 const bcrypt = require('bcryptjs');
+const Schema = mongoose.Schema;
 
 const userSchema = new Schema({
   _id: {
@@ -38,6 +39,10 @@ const userSchema = new Schema({
   lastLogin: {
     type: Date,
     default: Date.now()
+  },
+  department: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'department'
   }
 }, 
   {

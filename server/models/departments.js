@@ -14,7 +14,15 @@ const departmentSchema = new Schema({
   departmentWorkArea: {
     type: String,
     required: true
-  }  
+  },
+  users: [{ 
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'user'
+  }],
+  careers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'career'
+  }]
 });
 
 const Department = mongoose.model('department', departmentSchema);

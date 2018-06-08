@@ -26,10 +26,12 @@ module.exports = (app) => {
   const uploads = require('../routes/uploads');
   const careers = require('../routes/careers');
   const departments = require('../routes/departments');
+  const events = require('../routes/events');
   app.use('/api/users', users);
   app.use('/api/uploads', uploads);
   app.use('/api/careers', careers);
   app.use('/api/departments', departments);
+  app.use('/api/events', events);
  
   // Send all other requests to the Angular app
   app.get('*', (req, res) => {

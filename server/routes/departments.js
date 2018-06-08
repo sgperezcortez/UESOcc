@@ -15,6 +15,11 @@ router.route('/:departmentId')
   .get(passportJwt, departmentsController.getDepartment)
   .put(passportJwt, departmentsController.edit)
   .patch(passportJwt, departmentsController.update)
-  .delete(passportJwt, departmentsController.delete)
+  .delete(passportJwt, departmentsController.delete);
+
+
+router.route('/:departmentId/users')
+  .get(passportJwt, departmentsController.getUsers)
+  .post(passportJwt, departmentsController.createUser);
 
 module.exports = router;
