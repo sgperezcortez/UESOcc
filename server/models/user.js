@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const Department = require('../models/departments');
 const bcrypt = require('bcryptjs');
 const Schema = mongoose.Schema;
 
@@ -43,7 +42,11 @@ const userSchema = new Schema({
   department: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'department'
-  }
+  },
+  posts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'post'
+  }]
 }, 
   {
     timestamps: {

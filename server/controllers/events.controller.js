@@ -1,4 +1,6 @@
 const Event = require('../models/events');
+const User = require('../models/user');
+const Department = require('../models/departments');
 const mongoose = require('mongoose');
 const base_URL = "http://localhost:3000/api/events/";
 
@@ -89,6 +91,17 @@ module.exports = {
   // DELETE - removes a specific department
   delete: async (req, res, next) => {
     const {eventId} = req.params;
+    const eventInfo = await Event.findById(eventId);
+    const user = await User.findByIdAndUpdate(eventInfo.author, 
+      {$pull: {events: eventInfo._id}},
+      {safe: true, upsert: true}
+    );
+    
+    const department = await Department.findByIdAndUpdate(eventinfo.department, 
+      {$pull: {events: eventInfo._id}},
+      {safe: true, upsert: true}
+    );
+
     const result = await Event.findByIdAndRemove(eventId);
     res.status(200).json({
       success: true,

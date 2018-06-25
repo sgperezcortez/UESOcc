@@ -22,4 +22,11 @@ router.route('/:departmentId/users')
   .get(passportJwt, departmentsController.getUsers)
   .post(passportJwt, departmentsController.createUser);
 
+router.route('/:departmentId/careers')
+  .get(passportJwt, departmentsController.getCareers)
+  .post(passportJwt, departmentsController.createCareer);
+
+router.route('/:departmentId/posts')
+  .get(passportJwt, departmentsController.getPosts);
+
 module.exports = router;

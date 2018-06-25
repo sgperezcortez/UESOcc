@@ -15,8 +15,9 @@ module.exports = {
       departmentList: departments.map(department => {
         return {
           _id: department._id,
-          deparmentName: department.deparmentName,
-          departmentWorkArea: department.departmentWorkArea,
+          name: department.name,
+          workArea: department.workArea,
+          users: department.users,
           request: {
             type: 'GET',
             url: base_URL + department._id
@@ -45,7 +46,7 @@ module.exports = {
   // GET - get all the information about a specific department
   getDepartment: async (req, res, next) => {
     const { departmentId } = req.params;
-    const department = await Department.findById(departmentId)
+    const department = await Department.findById(departmentId);
     res.status(200).json({
       success: true,
       message: 'Recuperando información del departamento',
@@ -86,32 +87,92 @@ module.exports = {
   // DELETE - removes a specific department
   delete: async (req, res, next) => {
     const { departmentId } = req.params;
+    const department = await Department.findById(departmentId);
+    if (department.users.length > 0 || department.events.length > 0 || department.careers.length > 0) {
+      res.status(404).json({
+        success: false,
+        error: "El departamento poseen usuarios y eventos asociados"
+      })
+    } else {
+      const result = await Department.findByIdAndRemove(departmentId);
+      res.status(200).json({
+        success: true,
+        message: 'Departamento borrado satisfactoriamente'
+      });
+    }
 
-    const result = await Department.findByIdAndRemove(departmentId);
-    res.status(200).json({
-      success: true,
-      message: 'Departamento borrado satisfactoriamente'
-    });
   },
 
   // GET - get all the users of a specific department
   getUsers: async (req, res, next) => {
-    const { userId } = req.parms;
-    const user = await User.findById(userId);
+    const { departmentId } = req.parms;
+    const department = await User.findById(departmentId).populate('users');
+    res.status(200).json({
+      success: true,
+      departmentUsers: department.users
+    })
+
   },
 
   createUser: async (req, res, next) => {
-    const { departmentId } = req.params;
-
     // Get department
-    const department = Department.findById(departmentId);
+    const { departmentId } = req.params;
+    const department = await Department.findById(departmentId);
 
     // Create a new User
     const newUser = new User(req.body);
-    newUser.department = department;
+    newUser._id = new mongoose.Types.ObjectId();
+    newUser.department = department._id;
     await newUser.save();
-    department.users.push(newUser);
+    const result = await Department.findByIdAndUpdate(department._id,
+      { $push: { users: newUser._id}},
+      { safe: true, upsert: true }
+    )
+    res.status(201).json({
+        success: true,
+        message: 'Usuario agregado al departamento',
+        newUser: newUser
+      })
+    },
+
+  // GET - get all the careers of a specific department
+  getCareers: async (req, res, next) => {
+    const { departmentId } = req.params;
+    const department = await Department.findById(departmentId).populate('careers');
+    res.status(200).json({
+      succes: true,
+      message: "Carreras correspondientes al departamento " + department.name,
+      departmentCareers: department.careers
+    })    
+  },
+
+  // POST - creates a department into a specific department
+  createCareer: async (req, res, next) => {
+    // Get department
+    const { departmentId } = req.params;
+    const department = await Department.findById(departmentId);
+
+    // Create a new Career
+    const newCareer = new Career(req.body);
+    newCareer.department = department;
+    await newCareer.save();
+    department.careers.push(newCareer);
     await department.save();
-    res.status(201).json(newUser);
-    }
+    res.status(201).json({
+      success: true,
+      message: 'Carrera agreada al departamento',
+      newCareer: newCareer
+    });
+  },
+
+  // GET - get all the posts of a specific department
+  getPosts: async (req, res, next) => {
+    const { departmentId } = req.params;
+    const department = await Department.findById(departmentId).populate('posts');
+    res.status(200).json({
+      success: true,
+      message: "Publicaciones correspondientes al departamento " + department.name,
+      departmentPosts: department.posts
+    });
+  }
 }

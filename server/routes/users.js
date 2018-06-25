@@ -25,4 +25,12 @@ router.route('/:userId')
   .patch(passportJwt, usersController.update)
   .delete(passportJwt, usersController.delete);
 
+router.route('/:userId/posts')
+  .get(passportJwt, usersController.getPosts)
+  .post(passportJwt, usersController.createPost);
+
+router.route('/:userId/events')
+  .get(passportJwt, usersController.getEvents)
+  .post(passportJwt, usersController.createEvent);
+
 module.exports = router;

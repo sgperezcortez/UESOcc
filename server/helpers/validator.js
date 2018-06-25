@@ -54,7 +54,8 @@ module.exports = {
       birthDate: Joi.date(),
       isAdmin: Joi.boolean(),
       profileImage: Joi.string(),
-      lastLogin: Joi.date()
+      lastLogin: Joi.date(),
+      department: Joi.string().regex(/^(?=[a-f\d]{24}$)(\d+[a-f]|[a-f]+\d)/i)
     }),
 
     userLoginSchema: Joi.object().keys({
@@ -63,7 +64,7 @@ module.exports = {
     }),
 
     careerSchema: Joi.object().keys({
-      careerName: Joi.string().min(5).required(),
+      name: Joi.string().min(5).required(),
       description: Joi.string().min(5).required(),
       dischargeProfile: Joi.string().min(5).required(),
       admissionProfile: Joi.string().min(5).required(),
@@ -75,8 +76,8 @@ module.exports = {
     }),
 
     departmentSchema: Joi.object().keys({
-      departmentName: Joi.string().min(5).required(),
-      departmentWorkArea: Joi.string().min(5).required()
+      name: Joi.string().min(5).required(),
+      workArea: Joi.string().min(5).required()
     }),
 
     eventSchema: Joi.object().keys({
@@ -90,6 +91,17 @@ module.exports = {
       cost: Joi.number(),
       tags: Joi.array().items(Joi.string()).required()
 
+    }),
+
+    postSchema: Joi.object().keys({
+      title: Joi.string().required(),
+      imagePost: Joi.string(),
+      lead: Joi.string(),
+      body: Joi.string(),
+      author: Joi.string().required(),
+      department: Joi.string().required(),
+      datePublish: Joi.date(),
+      tags: Joi.array().items(Joi.string()).required()
     })
   }
 }

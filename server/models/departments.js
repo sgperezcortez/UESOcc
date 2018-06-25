@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const User = require('../models/user');
 const Schema = mongoose.Schema;
 
 const departmentSchema = new Schema({
@@ -7,11 +6,12 @@ const departmentSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true
   },
-  departmentName: {
+  name: {
     type: String,
+    unique: true,
     required: true
   },
-  departmentWorkArea: {
+  workArea: {
     type: String,
     required: true
   },
@@ -22,6 +22,10 @@ const departmentSchema = new Schema({
   careers: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'career'
+  }],
+  posts: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'post'
   }]
 });
 

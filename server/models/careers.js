@@ -6,7 +6,7 @@ const careerSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     required: true
   },
-  careerName: {
+  name: {
     type: String,
     required: true
   },
