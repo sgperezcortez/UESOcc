@@ -1,5 +1,5 @@
 const Event = require('../models/events');
-const User = require('../models/user');
+const User = require('../models/users');
 const Department = require('../models/departments');
 const mongoose = require('mongoose');
 const base_URL = "http://localhost:3000/api/events/";
@@ -23,6 +23,8 @@ module.exports = {
           admission: event.admission,
           description: event.description,
           cost: event.cost,
+          author: event.author,
+          department: event.department,
           tags: event.tags,
           request: {
             type: 'GET',
@@ -38,10 +40,20 @@ module.exports = {
     const newEvent = new Event(req.value.body);
     newEvent._id = new mongoose.Types.ObjectId();
     const event = await newEvent.save();
+    const user = await User.findByIdAndUpdate(event.author,
+      {$push: {events: event._id}},
+      {safe: true, upsert: true}
+    );
+    const department = await Department.findByIdAndUpdate(event.department, 
+      {$push: {events: event._id}},
+      {safe: true, upsert: true}
+    )
     res.status(201).json({
       success: true,
       message: 'Evento creado satisfactoriamente',
-      event,
+      event: event,
+      user: user.firstName,
+      department: department.name,
       request: {
         type: 'POST',
         url: base_URL + event._id
@@ -97,7 +109,7 @@ module.exports = {
       {safe: true, upsert: true}
     );
     
-    const department = await Department.findByIdAndUpdate(eventinfo.department, 
+    const department = await Department.findByIdAndUpdate(eventInfo.department, 
       {$pull: {events: eventInfo._id}},
       {safe: true, upsert: true}
     );

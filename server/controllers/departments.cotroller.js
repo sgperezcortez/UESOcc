@@ -1,6 +1,6 @@
 const Department = require('../models/departments'),
       mongoose = require('mongoose'),
-      User = require('../models/user'),
+      User = require('../models/users'),
       base_URL = "http://localhost:3000/api/departments/";
 
 module.exports = {

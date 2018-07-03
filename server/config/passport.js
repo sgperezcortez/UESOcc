@@ -4,7 +4,7 @@ const
   LocalStrategy = require('passport-local').Strategy,
   { ExtractJwt } = require('passport-jwt'),
   config = require('./config'),
-  User = require('../models/user');
+  User = require('../models/users');
 
   let opts = {
     jwtFromRequest : ExtractJwt.fromAuthHeaderWithScheme('jwt'),

@@ -12,7 +12,7 @@ router.route('/')
   .get(passportJwt, postsController.read);
 
 router.route('/:postId')
-  .get(passportJwt, postsController.getpost)
+  .get(passportJwt, postsController.getPost)
   .put(passportJwt, postsController.edit)
   .patch(passportJwt, postsController.update)
   .delete(passportJwt, postsController.delete);

@@ -1,4 +1,4 @@
-const User = require('../models/user');
+const User = require('../models/users');
 const Department = require('../models/departments');
 const mongoose = require('mongoose');
 const base_URL = "http://localhost:3000/api/users/";

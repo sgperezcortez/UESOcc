@@ -46,6 +46,10 @@ const userSchema = new Schema({
   posts: [{
     type: mongoose.Schema.Types.ObjectId,
     ref: 'post'
+  }],
+  events: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'event'
   }]
 }, 
   {

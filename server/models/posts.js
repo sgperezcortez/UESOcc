@@ -26,7 +26,8 @@ const postSchema = new Schema({
   },
   department: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'department'
+    ref: 'department',
+    required: true
   },
   datePublish: {
     type: Date,

@@ -1,5 +1,5 @@
 const passport = require('passport'),
-      User = require('../models/user'),
+      User = require('../models/users'),
       JWT = require('jsonwebtoken'),
       config = require('../config/config');
 

@@ -77,20 +77,25 @@ module.exports = {
 
     departmentSchema: Joi.object().keys({
       name: Joi.string().min(5).required(),
-      workArea: Joi.string().min(5).required()
+      workArea: Joi.string().min(5).required(),
+      users: Joi.array().items(Joi.string()),
+      events: Joi.array().items(Joi.string()),
+      posts: Joi.array().items(Joi.string())
     }),
 
     eventSchema: Joi.object().keys({
       name: Joi.string().required(),
-      where: Joi.string().required(),
-      when: Joi.object().keys({
+      when: {
         start: Joi.date().required(),
         end: Joi.date()
-      }),
+      },
+      where: Joi.string().required(),
+      admission: Joi.string().required(),
       description: Joi.string(),
       cost: Joi.number(),
+      author: Joi.string().required(),
+      department: Joi.string().required(),
       tags: Joi.array().items(Joi.string()).required()
-
     }),
 
     postSchema: Joi.object().keys({

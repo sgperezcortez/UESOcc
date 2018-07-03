@@ -41,6 +41,11 @@ const eventSchema = new Schema({
     ref: 'user',
     required: true
   },
+  department: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'department',
+    required: true
+  },
   tags: [{
     type: String,
     required: true

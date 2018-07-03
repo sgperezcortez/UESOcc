@@ -39,18 +39,18 @@ module.exports = {
     newPost._id = new mongoose.Types.ObjectId();
     const post = await newPost.save();
     const department = await Department.findByIdAndUpdate(post.department,
-      {$pull: {posts: post._id}},
+      {$push: {posts: post._id}},
       {safe: true, upsert: true}
     );
-    const user = await Department.findByIdAndUpdate(post.author,
-      {$pull: {posts: post._id}},
+    const user = await User.findByIdAndUpdate(post.author,
+      {$push: {posts: post._id}},
       {safe: true, upsert: true}
     );
     res.status(201).json({
       success: true,
       message: 'Publicación creada satisfactoriamente',
       post: post,
-      user: user.name,
+      user: user.firstName,
       department: department.name,
       request: {
         type: 'POST',
@@ -100,8 +100,8 @@ module.exports = {
 
   // DELETE - removes a specific post
   delete: async (req, res, next) => {
-    const {postId} = req.params;
-    const post = await Post.findById(postid);
+    const { postId } = req.params;
+    const post = await Post.findById(postId);
     const user = await User.findByIdAndUpdate(post.author,
       {$pull: {posts: post._id}},
       {safe: true, upsert: true}
