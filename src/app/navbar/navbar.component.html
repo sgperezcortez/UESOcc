@@ -1,8 +1,11 @@
-<nav class="nav-menu">
-  <div class="wrapper">
-    <label for="show-menu" class="show-menu">Show Menu</label>
-    <input type="checkbox" id="show-menu">
-    <ul class="navigation">
+<nav class="navbar">
+   <nav class="wrapper">
+     <div class="logo">
+      <img routerLink="/" src="../../assets/logo_nav.png" alt="Logo de la Facultad Multidisciplinaria de Occidente">
+     </div>
+     <input type="checkbox" id="menu-toggle">
+     <label for="menu-toggle" class="menu-icon"><span class="navicon"></span></label>
+     <ul class="menu">
       <ng-container *ngIf="!authService.loggedIn()">
         <li routerLinkActive="active current"><a routerLink="/identidad">Identidad</a></li>
         <li routerLinkActive="active current"><a routerLink="/admisiones">Admisiones</a></li>
@@ -24,9 +27,6 @@
           </ul>
         </li>
       </ng-container>
-    </ul>
-  </div>
-  <div id="img-nav">
-    <img routerLink="/" class="logo-uesocc" src="../../assets/logo_nav.png" alt="Logo de la Facultad Multidisciplinaria de Occidente">
-  </div>
+     </ul>
+    </nav>
 </nav>

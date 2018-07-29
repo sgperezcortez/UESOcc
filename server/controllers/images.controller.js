@@ -14,7 +14,7 @@ module.exports = {
   read: async (req, res, next) => {
     const imageName = req.params.filename;
 
-    gfs.collection('profile-images')
+    gfs.collection('images')
       .findOne({
         filename: imageName
       }, (err, file) => {
@@ -44,7 +44,7 @@ module.exports = {
             let image = 'data:image/png;base64,' + Buffer(data).toString('base64');
             res.status(200).json({
               success: true,
-              message: 'Foto de perfil encontrada',
+              message: 'Image encontrada',
               file: file,
               profileImage: image
             });
@@ -62,13 +62,12 @@ module.exports = {
 
   create: async (req, res, next) => {
     const imageName = req.files.file;
-    console.log(imageName[0].mimetype);
     if ((imageName[0].mimetype === 'image/png') || (imageName[0].mimetype === 'image/jpeg') || (imageName[0].mimetype === 'image/gif')) {
       const writeStream = gfs.createWriteStream({
-        filename: 'profile_' + Date.now() + '_' + imageName[0].name,
+        filename: 'image_' + Date.now() + '_' + imageName[0].name,
         content_type: imageName[0].mimetype,
         mode: {w: 1},
-        root: 'profile-images',
+        root: 'images',
         metadata: {
           originalName: imageName[0].name
         }
@@ -87,7 +86,7 @@ module.exports = {
         } else {
           res.status(200).json({
             success: true,
-            message: 'Imagen de perfil agregada satisfactoriamente',
+            message: 'Imagen agregada satisfactoriamente',
             imageInfo: file,
             url: `http://${req.headers.host}/api/uploads/profile-image/${file.filename}` 
           })
@@ -103,7 +102,7 @@ module.exports = {
 
   delete: async (req, res, next) => {
     const imageName = req.params.filename;
-    gfs.collection('profile-images')
+    gfs.collection('images')
     .findOne({filename: imageName}, (err, file) => {
       if (err) {
         res.status(400).json({
@@ -117,7 +116,7 @@ module.exports = {
             message: 'Imagen no encontrada'
           })
         } else {
-          gfs.db.collection('profile-images'+ '.chunks')
+          gfs.db.collection('images'+ '.chunks')
             .remove({files_id: file._id}, (err) => {
               if (err) {
                 throw err;
@@ -132,7 +131,7 @@ module.exports = {
             } else {
               res.status(200).json({
                 success: true,
-                message: 'Imagen de perfil borrada satisfactoriamente'
+                message: 'Imagen borrada satisfactoriamente'
               })
             }
           });
