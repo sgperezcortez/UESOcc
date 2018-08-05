@@ -5,7 +5,7 @@ const passport = require('passport'),
 
 loginToken = user => {
   let payload = {
-    exp: Math.floor(Date.now() / 1000) + (60),
+    exp: Math.floor(Date.now() / 1000) + (60*60),
     iss: 'uesocc',
     sub: user.id,
     firstName: user.firstName,
