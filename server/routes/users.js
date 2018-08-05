@@ -16,7 +16,7 @@ router.route('/logout')
 
 // Users CRUD
 router.route('/')
-  .post(validateBody(schemas.userSchema), usersController.create)
+  .post(passportJwt, validateBody(schemas.userSchema), usersController.create)
   .get(passportJwt, usersController.read);
 
 router.route('/:userId')

@@ -5,6 +5,7 @@ const passport = require('passport'),
 
 loginToken = user => {
   let payload = {
+    exp: Math.floor(Date.now() / 1000) + (60),
     iss: 'uesocc',
     sub: user.id,
     firstName: user.firstName,
@@ -12,7 +13,6 @@ loginToken = user => {
     isAdmin: user.isAdmin,
     email: user.email,
     iat: new Date().getTime(),
-    expiresIn: '12h'
   }
   return JWT.sign(payload, config.dev.JWT_SECRET);
 }
@@ -30,12 +30,12 @@ module.exports = {
             success: true,
             token,
             user
-          })
+          });
         } else {
           return res.status(404).json({
             success: false,
             error: 'Incorrect password'
-          })
+          });
         }
       } else {
         return res.status(404).json({

@@ -3,8 +3,8 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
-import { FileService } from '../../services/file.service';
-import { AppUsersService } from './../../services/app-users.service';
+import { FileService } from '../../../services/file.service';
+import { AppUsersService } from './../../../services/app-users.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({

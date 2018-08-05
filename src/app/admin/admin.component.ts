@@ -10,7 +10,14 @@ export class AdminComponent implements OnInit {
 
   constructor(private authService: AuthService) { }
 
+  isAdmin() {
+    if (this.authService.currentUser.isAdmin) {
+      return true;
+    } else return false;
+  }
+
   ngOnInit() {
+    let user = this.authService.currentUser;
   }
 
 }

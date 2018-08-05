@@ -2,8 +2,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 // 3rd party imports
 import { CustomFormsModule } from 'ng2-validation'
@@ -31,21 +30,21 @@ import { NewsComponent } from './news/news.component';
 import { FooterComponent } from './footer/footer.component';
 
 // Authorization & Authentications imports
-import { AuthService } from './services/auth.service';
 import { AuthGuard } from './guards/auth.guard';
 import { AdminGuard } from './guards/admin-guard';
-import { AuthModule } from './modules/auth.module';
 
 // Protected Routes
 import { AdminComponent } from './admin/admin.component';
 import { UsersComponent } from './admin/users/users.component';
-import { UserFormComponent } from './admin/user-form/user-form.component';
+import { UserFormComponent } from './admin/users/user-form/user-form.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 
 // Services Imports
+import { AuthService } from './services/auth.service';
 import { AppUsersService } from './services/app-users.service';
 import { SwitchControlComponent } from './switch-control/switch-control.component';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { AuthInterceptor } from './interceptors/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -71,8 +70,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
   imports: [
     BrowserAnimationsModule,
     MatComponentsModule,
-    AuthModule,
-    HttpModule,
     HttpClientModule,
     BrowserModule,
     ReactiveFormsModule,
@@ -90,7 +87,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 
       { path: 'admin/usuarios/nuevo', component: UserFormComponent, canActivate: [AuthGuard, AdminGuard] },
       { path: 'admin/usuarios', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
-      { path: 'admin', component: AdminComponent, canActivate: [AuthGuard, AdminGuard] },
+      { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
       { path: 'no-access', component: NoAccessComponent}
     ])
   ],
@@ -104,7 +101,12 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
     AppUsersService,
     FileService,
     { provide: MatDialogRef, useValue: {} },
-	  { provide: MAT_DIALOG_DATA, useValue: [] },
+    { provide: MAT_DIALOG_DATA, useValue: [] },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

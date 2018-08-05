@@ -16,13 +16,15 @@
         <li routerLinkActive="active current"><a routerLink="/login">Ingresar</a></li>
       </ng-container>
       <ng-container *ngIf="authService.loggedIn()">
-        <li><a routerLink="/admin">Panel Adminstrativo</a></li>
-        <li class="item-has-children">
-          <a href="#">
-            {{authService.currentUser.firstName}} {{authService.currentUser.lastName}} 
-          </a>
-          <ul>
-            <li><a href="">Perfil</a></li>
+        <li class="account">
+          <img src="https://dummyimage.com/100x100/000/fff.png" alt="Imagen de perfil" class="profile-img">
+          <span id="user-name">{{ authService.currentUser.firstName }}</span>
+          <i class="material-icons">
+              keyboard_arrow_down
+          </i>
+          <ul class="submenu">
+            <li>Perfil</li>
+            <li routerLinkActiate="activate current"><a routerLink="/admin">Panel Administrativo</a></li>
             <li><a (click)="onLogout()">Cerrar Sesión</a></li>
           </ul>
         </li>

@@ -1,5 +1,5 @@
 <section class="admin-content">   
-    <a routerLink="/admin/usuarios/">
+    <a routerLink="/admin/usuarios/" *ngIf="isAdmin()">
         <mat-card class="card-admin mat-elevation-z4">
             <mat-card-header>
                 <mat-card-title>
@@ -47,7 +47,7 @@
         </mat-card>
     </a>
 
-    <a routerLink="/admin">
+    <a routerLink="/admin" *ngIf="isAdmin()">
         <mat-card class="card-admin mat-elevation-z4">
             <mat-card-header>
                 <mat-card-title>

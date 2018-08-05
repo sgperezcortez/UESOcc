@@ -5,7 +5,7 @@ import { AppUsersService } from './../../services/app-users.service';
 import { AppUser } from './../../models/app-user.model';
 import { MatTableDataSource } from '@angular/material';
 import { Observable } from 'rxjs/Rx';
-import { UserFormComponent } from '../user-form/user-form.component';
+import { UserFormComponent } from './user-form/user-form.component';
 
 
 @Component({
@@ -25,17 +25,13 @@ export class UsersComponent implements OnInit {
   ) { }
   
   ngOnInit() {
-    this.appUsersService.getAll()
-    .subscribe(response => {
-      this.appUser = response.users;
-      this.dataSource = new MatTableDataSource(this.appUser);
-    });
+    this.getUsers();
   }
 
   getUsers():void{
     this.appUsersService.getAll()
     .subscribe(response => {
-      this.appUser = response.users;
+      this.appUser = response.usersList;
       this.dataSource = new MatTableDataSource(this.appUser);
     });
   }
@@ -52,7 +48,6 @@ export class UsersComponent implements OnInit {
     });
 
     dialogRef.afterClosed().subscribe(result => {
-      console.log(result);
       this.dialogResult = result;
       this.getUsers();
     })
