@@ -1,6 +1,6 @@
 import { Router } from '@angular/router';
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from './../services/auth.service';
+import { AuthService } from '../services/auth.service';
 
 @Component({
   selector: 'app-navbar',
@@ -8,10 +8,12 @@ import { AuthService } from './../services/auth.service';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit{
-
+  userId: string;
   constructor(private authService: AuthService, private router: Router) { }
 
   ngOnInit() {
+    // this.userId = this.authService.currentUser.sub;
+    // console.log(this.userId);
   }
 
   onLogout() {

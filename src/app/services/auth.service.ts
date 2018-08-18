@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
-import { JwtHelper, tokenNotExpired } from 'angular2-jwt';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { JwtHelper } from 'angular2-jwt';
+import { HttpClient } from '@angular/common/http';
 import * as moment from 'moment';
 import 'rxjs/add/operator/map';
 
@@ -12,38 +12,45 @@ export class AuthService {
 
   login(email: string, password: string){
     return this.http.post<any>(this.URL, {email, password})
-    .map(res => this.setSession(res))
-    .shareReplay();
+    .map(res => this.setToken(res));
   }
   
-  private setSession (authKey) {
-    const idToken = authKey.token;
-    const currentUser = new JwtHelper().decodeToken(idToken)
-    const expiresAt = moment.unix(currentUser.exp).format('lll');
-    localStorage.setItem('id_token', JSON.stringify(idToken));
-    localStorage.setItem('expires_at', JSON.stringify(expiresAt.valueOf()) )
-  }
-
   logout() {
-    localStorage.removeItem('id_token');
-    localStorage.removeItem('expires_at');
+    localStorage.removeItem('TOKEN');
+    localStorage.removeItem('ExpiresAt');
   }
 
-  loggedIn() {
-    console.log(moment().isBefore(this.getExpiration()));
-    return moment().isBefore(this.getExpiration());
+  getToken() {
+    return localStorage.getItem('TOKEN');
   }
 
-  getExpiration(){
-    const expiration = localStorage.getItem('expires_at');
-    const expiresAt = JSON.parse(expiration);
-    return moment(expiresAt);
+  private setToken(token){
+    localStorage.setItem('TOKEN', token.token);
+    const expiresAt = this.getexpirationDate();
+    localStorage.setItem('ExpiresAt', expiresAt.toString());
+
+  }
+
+  public loggedIn() {
+    const token = this.getToken();
+    if (!token) return false;
+    const date = this.getexpirationDate();
+    return (date.valueOf() > new Date().valueOf());
+
+  }
+
+  getexpirationDate() {
+    const token = this.getToken();
+    const decodedToken = new JwtHelper().decodeToken(token);
+    const date = new Date(0);
+    date.setUTCSeconds(decodedToken.exp);
+    return date;
   }
 
   get currentUser() {
-    let idToken = localStorage.getItem('id_token');
-    if (!idToken) return null;
-    return new JwtHelper().decodeToken(idToken);
+    const token = this.getToken();
+    if (!token) return null;
+    return new JwtHelper().decodeToken(token);
   }
 
 }

@@ -1,17 +1,65 @@
 <section class="user-profile">
   <mat-card class="card-profile mat-elevation-z8">
-    <mat-card-header>
-      <div class="left">
-        <img class="profile-image" src="../../../assets/profile-image.jpg" alt="">
+    <mat-card-header class="mat-elevation-z8">
+      <mat-toolbar>
+        <span class="example-spacer"></span>
+        <button mat-fab class="icon"><mat-icon>edit</mat-icon></button>
+      </mat-toolbar>
+      <div class="image">
+        <img class="profile-image" src="../../../assets/profile-image.jpg" alt="Imagen de perfil del usuario">
+        <div class="overlay">
+          <button mat-fab color="white" class="icon"><mat-icon>edit</mat-icon></button>
+        </div>
       </div>
-      <div class="right">
-        <h2>Perfil de Usuario</h2>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Numquam voluptatibus voluptas dolores, aliquid maxime iste nulla odit dolorum eveniet labore eos, blanditiis quasi consectetur unde.</p>
-        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo, vero.</p>
+      <div class="account-name">
+        <h2>{{user.firstName}}
+            {{user.lastName}}
+        </h2>
       </div>
     </mat-card-header>
     <mat-card-content>
-      <p>datos del usuario</p>
+      <div class="profile-description">
+        <p>Egresado sus estudios superiores en la Facultad Multidisciplinaria de Occidente.</p>
+        <div class="account-contact">
+          <div class="account-mail">
+            <a href="mailto:{{user.email}}">{{ user.email }}</a>
+          </div>
+          <div class="account-social" (click)="getUser()">
+            <share-buttons [theme]="'circles-dark'"
+            [include]="['facebook']"
+            [show]="1"
+            [showCount]="true"
+            [url]=""
+            [autoSetMeta]="false"
+            ></share-buttons>
+            <share-buttons [theme]="'circles-dark'"
+            [include]="['twitter']"
+            [show]="1"
+            [showCount]="true"
+            [url]=""
+            [autoSetMeta]="false"
+          ></share-buttons>
+          </div>
+        </div>
+      </div>
+      <div class="profile-info">
+        <div class="item-list">
+          <span><strong>Género:</strong></span>
+          <span>Masculino</span>
+        </div>
+        <mat-divider>
+        </mat-divider>
+        <div class="item-list">
+          <span><strong>Fecha de nacimiento:</strong></span>
+          <span>13 de marzo de 1979</span>
+        </div>
+        <mat-divider>
+        </mat-divider>
+        <div class="item-list">
+          <span><strong>Título profesional:</strong></span>
+          <span>Ingeniero en Sistemas Informáticos</span>
+        </div>
+      </div>
     </mat-card-content>
   </mat-card>
 </section>

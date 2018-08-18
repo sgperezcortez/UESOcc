@@ -1,63 +1,128 @@
 @import '~styles/abstract/variables';
 
 .user-profile {
-  display: flex;
-  justify-content: center;
-
   .card-profile {
-    width: 960px;
-    margin: 20px;
-    position: relative;
-    &:after {
-      content: "";
-      position: absolute;
-      top: 0px;
-      left: 0px;
-      border-left: 150px solid cadetblue;
-      border-top: 150px solid transparent;
-    }
-
+    margin-top: 5px;
+    padding: 0;
+    
     mat-card-header {
-      
-      .left {
-        z-index: 5;
-        flex: 1 1 20%;
-        display: flex;
-        justify-content: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      background: $header-bg-color;
 
-        .profile-image {
-          border-radius: 50%;
-          width: 120px;
-          height: 120px;
+      mat-toolbar {
+        background: transparent;
+        margin-top: 20px;
+
+        .example-spacer {
+          flex: 1 1 auto;
+        }
+
+        .icon {
+          background: $secondary-color;
         }
       }
 
-      .right {
-        flex: 1 1 80%;
+      .image {
+        position: relative;
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        align-content: center;
+        
+        &:hover .overlay{
+          opacity: 0.75;
+          transition: opacity 0.5s ease;
+        }
+               
+        img, .overlay {
+          width: 155px;
+          height: 155px;
+          border-radius: 50%;
+        }
+        
+        img {
+          border: 5px $secondary-color solid;
+        }
+        
+        .overlay {
+          background: $secondary-color;
+          position: absolute;
+          opacity: 0;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          top: 0;
+          left: 0;
+
+          .icon {
+            font-size: 30px;
+            
+            a {
+              text-decoration: none;
+              color: $primary-text-color;
+            }
+          }
+        }
+        
+      }
+
+      h2 {
+        text-align: center;
+        padding: 40px 20px;
+        margin: 0;
+        color: $primary-text-color;
       }
     }
 
+    mat-card-content {
+      padding: 20px;
+
+      .profile-description {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        
+        p {
+          text-align: center;
+          padding: 20px 0px;
+        }
+        
+        .account-contact {
+          padding: 40px 0px;
+          
+        }
+
+      }
+
+
+      .profile-info {
+        .item-list {
+          display: flex;
+          justify-content: space-around;
+
+          span {
+            width: 50%;
+            padding: 20px 0px;
+          }
+
+        }
+      }
+    }
   }
 }
 
-@media screen and (max-width: 600px) {
-  mat-card-header {
-    flex-direction: column;
-    .left {
-      flex: 1 1 100%;
-      justify-content: center;
+@media screen and (min-width: 600px) {
+  .user-profile {
+    display: flex;
+    justify-content: center;
 
-      .profile-image {
-        border-radius: 50%;
-        width: 120px;
-        height: 120px;
-        order: 1;
-      }
-    }
-
-    .right {
-      flex: 1 1 100%;
-      order: 2;
+    .card-profile {
+      width: 550px;
+      align-self: center;
     }
   }
 }

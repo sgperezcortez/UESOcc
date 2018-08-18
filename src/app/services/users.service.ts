@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
-import { AppUser } from '../models/app-user.model';
+import { User } from '../models/user.model';
 import 'rxjs/add/operator/map';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
-export class AppUsersService {
+export class UsersService {
   private serviceUrl = 'http://localhost:3000/api/users'
 
   constructor(private http: HttpClient) { }
@@ -15,7 +15,7 @@ export class AppUsersService {
 
   create(user) {
     return this.http.post(this.serviceUrl, user)
-       .map(response => response);
+       .map(response => response);  
   }
 
 }

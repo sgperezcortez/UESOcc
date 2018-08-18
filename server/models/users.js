@@ -25,23 +25,45 @@ const userSchema = new Schema({
     type: String,   
     required: true
   },
-  dateBirth: {
-    type: Date,
-  },
   isAdmin: {
     type: Boolean,
     default: false
   },
-  profileImage: {
-    type: String
+  department: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'department'
   },
   lastLogin: {
     type: Date,
     default: Date.now()
   },
-  department: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'department'
+  bio: {
+    degree: {
+      type: String
+    },
+    description: {
+      type: String
+    },
+    genre: {
+      type: String
+    },
+    birthday: {
+      type: Date
+    },
+    profileImage: {
+      type: String
+    }
+  },
+  socialProfile: {
+    fbProfile: {
+      type: String
+    },
+    twProfile: {
+      type: String
+    },
+    gProfile: {
+      type: String
+    }
   },
   posts: [{
     type: mongoose.Schema.Types.ObjectId,

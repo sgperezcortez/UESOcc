@@ -15,6 +15,8 @@
         './layout/forms';
 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+@import '~@ngx-share/button/styles/share-buttons';
+@import '~@ngx-share/button/styles/themes/default/default-theme';
 
 *{
 	margin:0;
@@ -22,39 +24,36 @@
   box-sizing:border-box;
 }
 
-// File upload styles
 
-.customClass {
-  background-color: #eeeeee;
-  border-radius: 5px dashed black;
-  max-width: 500px;
-
-  .img-ul-upload {
-    background-color: #000 !important;
-  }
-
-  .img-ul-file-upload {
-    border: 2px dashed black;
-  }
-
-  .img-ul-clear {
-    background-color: #B819BB !important;
-  }
-  
-  .img-ul-drag-box-msg {
-    color: $primary-color !important;
-  }
-
-  .img-ul-container {
-    background-color: #FF6CAD !important;
-  }
-
-  .img-ul-button span {
-    text-transform: capitalize;
-    font-size: 14px;
-    padding: 5px 10px;
-  }
+h1, h2, h3 {
+  letter-spacing: 2px;
 }
+
+
+h1 {
+  font-size: 40px;
+}
+
+h2 {
+  font-size: 32px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+
+p {
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: 2px;
+}
+
+
     
 
 

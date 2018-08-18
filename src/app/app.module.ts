@@ -37,14 +37,18 @@ import { AdminGuard } from './guards/admin-guard';
 import { AdminComponent } from './admin/admin.component';
 import { UsersComponent } from './admin/users/users.component';
 import { UserFormComponent } from './admin/users/user-form/user-form.component';
+import { UserProfileComponent } from './admin/users/user-profile/user-profile.component';
 import { NoAccessComponent } from './no-access/no-access.component';
 
 // Services Imports
 import { AuthService } from './services/auth.service';
-import { AppUsersService } from './services/app-users.service';
-import { SwitchControlComponent } from './switch-control/switch-control.component';
+import { UsersService } from './services/users.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import { AuthInterceptor } from './interceptors/auth.interceptor';
+
+// ThirdParty Directives
+import { SwitchControlComponent } from './switch-control/switch-control.component';
+import { ShareButtonsModule } from '@ngx-share/buttons';
 
 @NgModule({
   declarations: [
@@ -65,9 +69,11 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     UserFormComponent,
     SwitchControlComponent,
     FileUploadComponent,
-    UsersComponent
+    UsersComponent,
+    UserProfileComponent
   ],
   imports: [
+    ShareButtonsModule.forRoot(),
     BrowserAnimationsModule,
     MatComponentsModule,
     HttpClientModule,
@@ -87,6 +93,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
 
       { path: 'admin/usuarios/nuevo', component: UserFormComponent, canActivate: [AuthGuard, AdminGuard] },
       { path: 'admin/usuarios', component: UsersComponent, canActivate: [AuthGuard, AdminGuard] },
+      { path: 'admin/perfil/:userId', component: UserProfileComponent, canActivate: [AuthGuard]},
       { path: 'admin', component: AdminComponent, canActivate: [AuthGuard] },
       { path: 'no-access', component: NoAccessComponent}
     ])
@@ -98,7 +105,7 @@ import { AuthInterceptor } from './interceptors/auth.interceptor';
     AuthService,
     AuthGuard,
     AdminGuard,
-    AppUsersService,
+    UsersService,
     FileService,
     { provide: MatDialogRef, useValue: {} },
     { provide: MAT_DIALOG_DATA, useValue: [] },

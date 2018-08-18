@@ -4,7 +4,7 @@ import { Router, ActivatedRoute } from '@angular/router';
 import { FormBuilder, Validators } from '@angular/forms';
 import { CustomValidators } from 'ng2-validation';
 import { FileService } from '../../../services/file.service';
-import { AppUsersService } from './../../../services/app-users.service';
+import { UsersService } from '../../../services/users.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -21,7 +21,7 @@ export class UserFormComponent implements OnInit {
     private fb: FormBuilder,
     private router: Router,
     private fileService: FileService,
-    private appUsersService: AppUsersService,
+    private appUsersService: UsersService,
     public dialogRef: MatDialogRef<UserFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) {

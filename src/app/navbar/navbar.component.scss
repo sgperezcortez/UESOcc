@@ -1,0 +1,236 @@
+@import '~styles/abstract/variables';
+
+@import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+
+.navbar {
+  z-index: 3;
+  margin: 0 auto;
+  background: $primary-color;
+  color: $primary-text-color;
+  line-height: 2em;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  font-size: 1.5em;
+  // position: fixed;
+  width: 100%;
+  font-family: 'Fijalla One', sans-serif;
+  font-weight: 600;
+
+  .wrapper { 
+    padding: 1.5%;
+    .logo {
+      display: inline-block;
+      // float: left;
+      width: 20%;
+
+      img {
+        max-height: 55px;
+        transition: max-height .2s ease-in;
+        width: auto;
+      }
+    }
+
+    #menu-toggle {
+      display: none;
+    }
+
+    #menu-toggle:checked ~ .menu {
+      max-height: 100vh;
+      transition: max-height 0.2s ease-out;
+    }
+
+    #menu-toggle:checked ~ .menu-icon .navicon {
+      background: transparent;
+    }
+    
+    #menu-toggle:checked ~ .menu-icon .navicon:before {
+      transform: rotate(-45deg);
+    }
+
+    #menu-toggle:checked ~ .menu-icon .navicon:after {
+      transform: rotate(45deg);
+    }
+
+    #menu-toggle:checked ~ .menu-icon:not(.steps) .navicon:before,
+    #menu-toggle:checked ~ .menu-icon:not(.steps) .navicon:after {
+      top: 0;
+    }
+
+    .menu-icon {
+      cursor: pointer;
+      float: right;
+      display: inline-block;
+      padding: 28px 20px;
+      position: relative;
+      user-select: none;
+
+      .navicon {
+        background: $primary-text-color;
+        display: block;
+        height: 2px;
+        position: relative;
+        transition: background 0.2s ease-out;
+        width: 18px;
+
+        &:before,
+        &:after {
+          content: '';
+          background: $primary-text-color;
+          display: block;
+          height: 100%;
+          width: 100%;
+          position: absolute;
+          transition: all .2s ease-out;
+        }
+
+        &:before {
+          top: 5px;
+        }
+
+        &:after {
+          top: -5px;
+        }
+      }
+    }
+
+
+    .menu {
+      background: $secondary-color;
+      list-style: none;
+      display: block;
+      width: 100%;
+      max-height: 0;
+      transition: max-height 0.2s ease-in;
+      overflow: hidden;
+      text-align: center;
+
+      li {
+        display: block;
+        padding: 1.75em 0;
+        
+        &:not(:last-child) {
+          border-bottom: 2px solid $primary-color;
+        }
+        
+        a{
+          color: $primary-text-color;
+          text-decoration: none;
+        }
+      }
+
+      .profile-img, #user-name, i {
+        display: none;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .navbar {
+    font-size: 0.85em;
+
+    .wrapper {
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      
+      .logo img {
+        max-height: 70px;
+      }
+
+
+      #menu-toggle {
+        display: none;
+      }
+  
+      .menu-icon {
+        display: none;
+      }
+  
+      .menu {
+        max-height: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 65%;
+        background: transparent;
+
+// Account user menu
+
+        .account{
+          position: absolute;
+          cursor: pointer;
+          right: 20px;
+          padding: 10px 20px;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          
+          &:hover {
+            background: $secondary-color;
+            border-radius: 5px;
+            transition: all 0.5s ease;
+
+            .submenu {
+              z-index: 100;
+              display: block;
+              cursor: pointer;
+              background: $secondary-color;
+              position: absolute;
+              top: 68px;
+              left: 0px;
+              width: 260px;
+              height: auto;
+
+              li {
+                display: block;
+
+                &:hover {
+                  background: $primary-color;
+                  transition: all 0.2s;
+                }
+              }
+            }
+          }
+
+          .profile-img, #user-name, i {
+            display: inline-block;
+          }
+
+          .profile-img {
+            border-radius: 50%;
+            border: 2px solid $primary-text-color;
+            max-width: 50px;
+            max-width: 50px;
+          }
+          
+          #user-name {
+            margin: 0px 10px;
+          }
+
+          .submenu {  
+            display: none;
+          }
+        }
+        
+
+        li {
+          display: inline-block;
+  
+          a{
+            padding-bottom: 12px;
+            transition: all 0.3s ease-in-out;
+  
+            &:hover {
+              color: $secondary-text-color;
+              box-shadow: 0px 3px 0px $secondary-text-color;
+              transition: all 0.3s ease-in;
+            }
+  
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { AuthHttp } from 'angular2-jwt';
-import { AppUsersService } from './../../services/app-users.service';
-import { AppUser } from './../../models/app-user.model';
+import { UsersService } from '../../services/users.service';
+import { User } from '../../models/user.model';
 import { MatTableDataSource } from '@angular/material';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs';
 import { UserFormComponent } from './user-form/user-form.component';
 
 
@@ -14,13 +14,13 @@ import { UserFormComponent } from './user-form/user-form.component';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit {
-  appUser : AppUser[];
+  appUser : User[];
   dialogResult = "";
   displayedColumns = ['Nombre', 'Apellido', 'Email', 'Acciones'];
   dataSource;
   
   constructor(
-    private appUsersService: AppUsersService,
+    private appUsersService: UsersService,
     public dialog: MatDialog
   ) { }
   

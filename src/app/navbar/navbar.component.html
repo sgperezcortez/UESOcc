@@ -23,8 +23,8 @@
               keyboard_arrow_down
           </i>
           <ul class="submenu">
-            <li>Perfil</li>
-            <li routerLinkActiate="activate current"><a routerLink="/admin">Panel Administrativo</a></li>
+            <li routerLinkActivate="activate current"><a routerLink="/admin/perfil/:userId">Perfil</a></li>
+            <li routerLinkActivate="activate current"><a routerLink="/admin">Panel Administrativo</a></li>
             <li><a (click)="onLogout()">Cerrar Sesión</a></li>
           </ul>
         </li>

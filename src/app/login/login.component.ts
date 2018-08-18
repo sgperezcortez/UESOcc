@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
-import { AuthService } from './../services/auth.service';
+import { AuthService } from '../services/auth.service';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
@@ -46,7 +46,6 @@ export class LoginComponent implements OnInit {
       } else {
         this.isInvalid = false;
         this.authService.login(val.email, val.password)
-        .first()
         .subscribe(result => {
           let returnUrl = this.route.snapshot.queryParamMap.get('returnUrl');
           this.router.navigate([returnUrl || '/admin']);
